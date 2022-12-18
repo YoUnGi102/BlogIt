@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="14500421-8f06-461d-9b52-fe3e60e4ffff" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../analysis/diagrams/astah/Domain Model.asta" beforeDir="false" afterPath="$PROJECT_DIR$/../../analysis/diagrams/astah/Domain Model.asta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BusinessTier/src/main/java/com/gres/tomas/businesstier/api/controllers/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BusinessTier/src/main/java/com/gres/tomas/businesstier/api/controllers/BlogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BusinessTier/src/main/java/com/gres/tomas/businesstier/domain/dto/CreateBlogDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/BusinessTier/src/main/java/com/gres/tomas/businesstier/domain/dto/CreateBlogDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BusinessTier/src/main/java/com/gres/tomas/businesstier/domain/model/Blog.java" beforeDir="false" afterPath="$PROJECT_DIR$/BusinessTier/src/main/java/com/gres/tomas/businesstier/domain/model/Blog.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2INILdEmLxj7kVhX9kGJmdLFozF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/Development/Projects/BlogIt/code/BusinessTier",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "spring.configuration.checksum": "4cdd3568a8851cb388f15aafd9f49879"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="BusinessTierApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="BusinessTier" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gres.tomas.businesstier.BusinessTierApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="14500421-8f06-461d-9b52-fe3e60e4ffff" name="Changes" comment="" />
+      <created>1670015562072</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1670015562072</updated>
+      <workItem from="1670015563352" duration="5306000" />
+      <workItem from="1670023207925" duration="1380000" />
+      <workItem from="1670097681974" duration="2539000" />
+      <workItem from="1670239529102" duration="650000" />
+      <workItem from="1671232146258" duration="74000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

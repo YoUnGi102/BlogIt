@@ -32,6 +32,7 @@ public class User {
     @Column(unique = true)
     private String email;
 
+    @JsonIgnore
     private String password;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -62,8 +63,5 @@ public class User {
     }
     public LocalDate getDateOfRegistration() {
         return dateOfRegistration;
-    }
-    public boolean comparePassword(String password){
-        return Objects.equals(this.password, password);
     }
 }

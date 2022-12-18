@@ -21,14 +21,22 @@ public class Blog {
     )
     private Long id;
 
-    private String name;
+    private Integer posts;
+    private Integer comments;
+    private Integer likes;
+    private Integer dislikes;
 
+    private String access; // "private" / "public" / "restricted"
+    private String name;
     private String description;
+
+    private Double rating;
 
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime dateTimeCreated;
 
-    private Double rating;
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    private LocalDateTime lastUpdated;
 
     @ManyToOne
     @JoinColumn(name = "authorId")
@@ -36,12 +44,17 @@ public class Blog {
 
     public Blog(){}
 
-    public Blog(String name, String description, User author) {
+    public Blog(String name, String description, User author, String access) {
         this.name = name;
         this.description = description;
         this.dateTimeCreated = LocalDateTime.now();
+        this.lastUpdated = LocalDateTime.now();
         this.author = author;
         this.rating = 0.0;
+        this.posts = 0;
+        this.likes = 0;
+        this.dislikes = 0;
+        this.access = access;
     }
 
     public User getAuthor() {
@@ -59,8 +72,26 @@ public class Blog {
     public LocalDateTime getDateTimeCreated() {
         return dateTimeCreated;
     }
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
+    }
     public Double getRating() {
         return rating;
+    }
+    public Integer getPosts() {
+        return posts;
+    }
+    public Integer getComments() {
+        return comments;
+    }
+    public Integer getLikes() {
+        return likes;
+    }
+    public Integer getDislikes() {
+        return dislikes;
+    }
+    public String getAccess() {
+        return access;
     }
 
 }
