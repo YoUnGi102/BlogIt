@@ -10,5 +10,6 @@ import java.util.List;
 public interface IBlogService {
 
     Blog postBlog(CreateBlogDto dto) throws InvalidAttributeException;
+    List<Blog> getAllBlogs();
 
 }

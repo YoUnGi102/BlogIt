@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faStickyNote, faCar, faComment, faThumbsUp, faThumbsDown} from '@fortawesome/free-solid-svg-icons'
+import ActionButton from "./ActionButton";
 import "./Blog.css"
 
 function Blog(props){
@@ -44,6 +45,8 @@ function Blog(props){
                   <p>{"Last Update: " + props.lastUpdate}</p>
               </Row>
           </Container>
+
+          <ActionButton path={"/blogs/create"}/>
       </div>
     );
 }

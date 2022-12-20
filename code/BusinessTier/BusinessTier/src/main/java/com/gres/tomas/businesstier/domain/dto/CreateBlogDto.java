@@ -26,4 +26,14 @@ public class CreateBlogDto {
     public String getAccess() {
         return access;
     }
+
+    @Override
+    public String toString() {
+        return "CreateBlogDto{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", authorId=" + authorId +
+                ", access='" + access + '\'' +
+                '}';
+    }
 }

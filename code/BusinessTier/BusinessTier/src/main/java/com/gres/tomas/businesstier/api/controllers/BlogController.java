@@ -25,8 +25,10 @@ public class BlogController {
         this.service = service;
     }
 
+    @CrossOrigin
     @PostMapping
     public Blog postBlog(@RequestBody CreateBlogDto dto) throws InvalidAttributeException {
+        System.out.println(dto);
         return service.postBlog(dto);
     }
 
@@ -40,10 +42,11 @@ public class BlogController {
         throw new NotYetImplementedException();
     }
 
-//    @GetMapping
-//    public List<Blog> getBlogs() {
-//        throw new NotYetImplementedException();
-//    }
+    @CrossOrigin
+    @GetMapping
+    public List<Blog> getBlogs() {
+        return service.getAllBlogs();
+    }
 
 
 //

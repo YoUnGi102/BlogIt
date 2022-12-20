@@ -1,5 +1,7 @@
 package com.gres.tomas.businesstier.api.services;
 
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.ser.std.JsonValueSerializer;
 import com.gres.tomas.businesstier.api.exceptions.EntityNotFoundException;
 import com.gres.tomas.businesstier.api.exceptions.InvalidAttributeException;
 import com.gres.tomas.businesstier.api.serviceInterfaces.IBlogService;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.management.BadAttributeValueExpException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,7 +31,8 @@ public class BlogService implements IBlogService {
 
     @Override
     public Blog postBlog(CreateBlogDto dto) throws InvalidAttributeException {
-        Optional<User> user = userRepository.findById(dto.getAuthorId());
+        // TODO - CHANGE
+        Optional<User> user = userRepository.findById(1L);
         if(user.isEmpty()){
             throw new EntityNotFoundException("The author with this Id ("+dto.getAuthorId()+") was not found ");
         }else{
@@ -44,6 +48,11 @@ public class BlogService implements IBlogService {
         }
     }
 
+    @Override
+    public List<Blog> getAllBlogs() {
+        return blogRepository.findAll();
+    }
+
     private static void ValidateCreateBlog(CreateBlogDto dto) throws InvalidAttributeException{
         if(dto.getAccess() == null){
             throw new InvalidAttributeException("'Access' can not be null");
@@ -54,14 +63,14 @@ public class BlogService implements IBlogService {
         if(dto.getName() == null){
             throw new InvalidAttributeException("'Name' can not be null");
         }
-        if (!dto.getAccess().equals("private") && !dto.getAccess().equals("public") && !dto.getAccess().equals("restricte")) {
+        if (!dto.getAccess().equals("private") && !dto.getAccess().equals("public") && !dto.getAccess().equals("restricted")) {
             throw new InvalidAttributeException("The access can only be of type 'public', 'private' or 'restricted'");
         }
-        if(dto.getDescription() != null && dto.getDescription().length() < 50){
-            throw new InvalidAttributeException("The description has to be at least 50 characters long");
+        if(dto.getDescription() != null && dto.getDescription().length() < 50 && dto.getDescription().length() > 200){
+            throw new InvalidAttributeException("The description has to be between 50 and 200 characters long");
         }
-        if(dto.getName() != null && dto.getName().length() < 5){
-            throw new InvalidAttributeException("The name of the blog post has to be at least 5 characters long");
+        if(dto.getName() != null && dto.getName().length() < 5 && dto.getName().length() > 25){
+            throw new InvalidAttributeException("The name of the blog post has to be between 5 and 25 characters long");
         }
     }
 
