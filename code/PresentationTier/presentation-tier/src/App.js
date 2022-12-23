@@ -1,6 +1,7 @@
 import './App.css';
-import BlogsPage from "./components/BlogsPage";
+import BlogsPage from "./pages/BlogsPage";
 import CreateBlog from "./components/CreateBlog";
+import ViewBlogPage from "./pages/ViewBlogPage";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 function App() {
@@ -9,6 +10,10 @@ function App() {
         {
             path: "/",
             element: <BlogsPage />,
+        },
+        {
+            path: "blogs/:blogId",
+            element: <ViewBlogPage />
         },
         {
             path: "blogs/create",

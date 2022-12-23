@@ -1,7 +1,7 @@
 import React from "react";
-import Blog from './Blog';
+import Blog from '../components/Blog';
 import "./BlogsPage.css";
-import ActionButton from "./ActionButton"
+import ActionButton from "../components/ActionButton"
 
 function BlogsPage(){
 

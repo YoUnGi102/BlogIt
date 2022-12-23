@@ -1,11 +1,13 @@
 import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import {Button, TextField, FormControl, FormGroup, MenuItem} from '@mui/material';
+import {EMPTY_BLOG_ERROR} from "../domain/other/constants";
 import "./CreateBlog.css"
 import CreateBlogDto from "../domain/dto/CreateBlogDto"
 
 function CreateBlog(){
 
-    //const controller = new BlogHttpController();
+    const navigate = useNavigate();
 
     const initDto : CreateBlogDto = {
         name:"",
@@ -21,7 +23,7 @@ function CreateBlog(){
         access: ""
     })
 
-    // const [id, setId] = useState(0);
+    const [id, setId] = useState(0);
 
 
     const handleTextFieldChange = (
@@ -34,7 +36,8 @@ function CreateBlog(){
         });
     };
 
-    async function handleSubmit() {
+    async function handleSubmit(event) {
+        event.preventDefault();
         const url = 'http://localhost:8080/api/v1/blogs';
 
         fetch(url, {
@@ -46,23 +49,23 @@ function CreateBlog(){
         }).then(response => {
                 if(response.ok){
                     response.json()
-                       // .then(data => setId(data.id))
+                        .then(data => {
+                            // TODO Is necessary?
+                            //validateFields(EMPTY_BLOG_ERROR);
+                            navigate("/blogs/"+data.id)
+                        })
                 }else{
                     response.json()
-                        .then(res => {validateFields(res)});
+                        .then(res => {
+                            validateFields(JSON.parse(res.message))});
                 }
             }
         );
 
     }
 
-    function validateFields(errorText){
-        console.log(errorText.message);
-        const errorMessages = JSON.parse(errorText.message)
+    function validateFields(errorMessages){
         console.log(errorMessages)
-        console.log(errorMessages.name);
-        console.log(errorMessages.description);
-        console.log(errorMessages.access);
         setError({
             name: (errorMessages.name == null) ? "" : errorMessages.name,
             description: (errorMessages.description == null) ? "" : errorMessages.description,
