@@ -1,9 +1,13 @@
 .CreateBlog {
-    width: 90%;
-    margin: 0 5% 0 5%;
+    width: 100%;
+    padding: 0 5%;
     box-sizing: border-box;
 }
 
 .CreateBlog .TextField, .CreateBlog .Button {
     margin: 10px;
+}
+
+.CreateBlog .Button {
+    height: 56px;
 }

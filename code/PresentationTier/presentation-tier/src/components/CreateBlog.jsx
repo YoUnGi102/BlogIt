@@ -2,23 +2,26 @@ import React, {useState} from "react";
 import {Button, TextField, FormControl, FormGroup, MenuItem} from '@mui/material';
 import "./CreateBlog.css"
 import CreateBlogDto from "../domain/dto/CreateBlogDto"
-import Blog from "../domain/model/Blog";
-//import {BlogHttpController} from "../httpClients/BlogHttpController"
 
 function CreateBlog(){
 
     //const controller = new BlogHttpController();
 
-    var initDto : CreateBlogDto = {
-        name:"Mechanical Engineering",
-        description:"Mechanics and stuff for readers of every age and knowledge level",
-        access:"private",
+    const initDto : CreateBlogDto = {
+        name:"",
+        description:"",
+        access:"",
         authorId: 1
     }
-
     const [dto, setDto] = useState(initDto);
 
-    const [id, setId] = useState(0);
+    const [error, setError] = useState({
+        name: "",
+        description: "",
+        access: ""
+    })
+
+    // const [id, setId] = useState(0);
 
 
     const handleTextFieldChange = (
@@ -40,22 +43,47 @@ function CreateBlog(){
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(dto),
-        }).then(response => response.json())
-        .then(data => setId(data.id));
+        }).then(response => {
+                if(response.ok){
+                    response.json()
+                       // .then(data => setId(data.id))
+                }else{
+                    response.json()
+                        .then(res => {validateFields(res)});
+                }
+            }
+        );
+
+    }
+
+    function validateFields(errorText){
+        console.log(errorText.message);
+        const errorMessages = JSON.parse(errorText.message)
+        console.log(errorMessages)
+        console.log(errorMessages.name);
+        console.log(errorMessages.description);
+        console.log(errorMessages.access);
+        setError({
+            name: (errorMessages.name == null) ? "" : errorMessages.name,
+            description: (errorMessages.description == null) ? "" : errorMessages.description,
+            access: (errorMessages.access == null) ? "" : errorMessages.access,
+        });
+        console.log(error);
     }
 
     return(
-        <div>
+        <div className="CreateBlog">
             <h1>Create a New Blog</h1>
             <form>
                 <FormGroup>
                     <FormControl
-                        className={"CreateBlog"}
                         component="form"
                         validate
                         autoComplete="off"
                     >
                         <TextField
+                            error={error.name.length > 0}
+                            helperText={error.name}
                             className="TextField"
                             id="name"
                             name="name"
@@ -66,6 +94,8 @@ function CreateBlog(){
                             required
                         />
                         <TextField
+                            error={error.description.length > 0}
+                            helperText={error.description}
                             className="TextField"
                             id="description"
                             name="description"
@@ -77,6 +107,8 @@ function CreateBlog(){
                             maxRows={4}
                         />
                         <TextField
+                            error={error.access.length > 0}
+                            helperText={error.access}
                             className="TextField"
                             id="access"
                             name="access"
