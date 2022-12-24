@@ -1,30 +1,16 @@
+import "./RegisterPage.css";
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {Button, TextField, FormControl, FormGroup, MenuItem} from '@mui/material';
-import "./CreateBlog.css"
-import {serverPath} from "../config"
-import CreateBlogDto from "../domain/dto/CreateBlogDto"
+import {Button, FormControl, FormGroup, MenuItem, TextField} from "@mui/material";
+import {serverPath} from "../config";
+import {EMPTY_CREATE_USER_DTO} from "../domain/dto/CreateUserDto"
 
-function CreateBlog(){
+export default function RegisterPage(){
 
     const navigate = useNavigate();
 
-    const initDto : CreateBlogDto = {
-        name:"",
-        description:"",
-        access:"",
-        authorId: 1
-    }
-    const [dto, setDto] = useState(initDto);
-
-    const [error, setError] = useState({
-        name: "",
-        description: "",
-        access: ""
-    })
-
-    const [id, setId] = useState(0);
-
+    const [dto, setDto] = useState(EMPTY_CREATE_USER_DTO)
+    const [error, setError] = useState(EMPTY_CREATE_USER_DTO);
 
     const handleTextFieldChange = (
         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -38,7 +24,7 @@ function CreateBlog(){
 
     async function handleSubmit(event) {
         event.preventDefault();
-        const url = serverPath + 'blogs';
+        const url = serverPath + 'users';
 
         fetch(url, {
             method: 'post',
@@ -50,7 +36,7 @@ function CreateBlog(){
                 if(response.ok){
                     response.json()
                         .then(data => {
-                            navigate("/blogs/"+data.id)
+                            navigate("/blogs");
                         })
                 }else{
                     response.json()
@@ -63,17 +49,17 @@ function CreateBlog(){
     }
 
     function validateFields(errorMessages){
-        console.log(errorMessages)
         setError({
-            name: (errorMessages.name == null) ? "" : errorMessages.name,
-            description: (errorMessages.description == null) ? "" : errorMessages.description,
-            access: (errorMessages.access == null) ? "" : errorMessages.access,
+            username: (errorMessages.username == null) ? "" : errorMessages.username,
+            email: (errorMessages.email == null) ? "" : errorMessages.email,
+            password: (errorMessages.password == null) ? "" : errorMessages.password,
+            repeatPassword: (errorMessages.repeatPassword == null) ? "" : errorMessages.repeatPassword
         });
+        console.log(error);
     }
 
     return(
-        <div className="CreateBlog">
-            <h1>Create a New Blog</h1>
+        <div className={"RegisterPage"}>
             <form>
                 <FormGroup>
                     <FormControl
@@ -82,24 +68,24 @@ function CreateBlog(){
                         autoComplete="off"
                     >
                         <TextField
-                            error={error.name.length > 0}
-                            helperText={error.name}
+                            error={error.username.length > 0}
+                            helperText={error.username}
                             className="TextField"
-                            id="name"
-                            name="name"
-                            label=" Blog name"
+                            id="username"
+                            name="username"
+                            label=" Username"
                             variant="outlined"
                             onChange={handleTextFieldChange}
                             autoFocus
                             required
                         />
                         <TextField
-                            error={error.description.length > 0}
-                            helperText={error.description}
+                            error={error.email.length > 0}
+                            helperText={error.email}
                             className="TextField"
-                            id="description"
-                            name="description"
-                            label=" Description"
+                            id="email"
+                            name="email"
+                            label=" E-mail"
                             variant="outlined"
                             onChange={handleTextFieldChange}
                             multiline
@@ -107,35 +93,42 @@ function CreateBlog(){
                             maxRows={4}
                         />
                         <TextField
-                            error={error.access.length > 0}
-                            helperText={error.access}
+                            error={error.password.length > 0}
+                            helperText={error.password}
                             className="TextField"
-                            id="access"
-                            name="access"
-                            label=" Access"
+                            id="password"
+                            name="password"
+                            label=" Password"
                             variant="outlined"
                             onChange={handleTextFieldChange}
-                            select
+                            multiline
                             required
-                        >
-                            <MenuItem value={"private"}>Private</MenuItem>
-                            <MenuItem value={"restricted"}>Followers only</MenuItem>
-                            <MenuItem value={"public"}>Public</MenuItem>
-                        </TextField>
+                            maxRows={4}
+                        />
+                        <TextField
+                            error={error.repeatPassword.length > 0}
+                            helperText={error.repeatPassword}
+                            className="TextField"
+                            id="repeatPassword"
+                            name="repeatPassword"
+                            label=" Repeat Password"
+                            variant="outlined"
+                            onChange={handleTextFieldChange}
+                            multiline
+                            required
+                            maxRows={4}
+                        />
                         <Button
                             className="Button"
                             type="submit"
                             variant="outlined"
                             color="success"
                             onClick={handleSubmit}
-                        >Submit</Button>
+                        >Register</Button>
                     </FormControl>
                 </FormGroup>
             </form>
-
         </div>
+    )
 
-    );
 }
-
-export default CreateBlog;
