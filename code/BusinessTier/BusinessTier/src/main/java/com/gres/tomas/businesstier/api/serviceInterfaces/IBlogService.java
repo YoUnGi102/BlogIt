@@ -11,5 +11,6 @@ public interface IBlogService {
 
     Blog postBlog(CreateBlogDto dto) throws InvalidAttributeException;
     List<Blog> getAllBlogs();
+    Blog getBlogById(long id);
 
 }

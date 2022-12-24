@@ -53,6 +53,16 @@ public class BlogService implements IBlogService {
         return blogRepository.findAll();
     }
 
+    @Override
+    public Blog getBlogById(long id) {
+        Optional<Blog> blog = blogRepository.findById(id);
+        if(blog.isEmpty()){
+            throw new EntityNotFoundException("Blog with this id was not found");
+        }else{
+            return blog.get();
+        }
+    }
+
     private static void ValidateCreateBlog(CreateBlogDto dto) throws InvalidAttributeException{
 
         ValidationError errors = new ValidationError();

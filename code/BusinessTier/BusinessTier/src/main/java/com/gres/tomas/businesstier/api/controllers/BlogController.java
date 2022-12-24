@@ -28,17 +28,17 @@ public class BlogController {
     @CrossOrigin
     @PostMapping
     public Blog postBlog(@RequestBody CreateBlogDto dto) throws InvalidAttributeException {
-        System.out.println(dto);
         return service.postBlog(dto);
     }
 
+    @CrossOrigin
     @GetMapping(path = "{blogId}")
     public Blog getBlogById(@PathVariable("blogId") int blogId){
-        throw new NotYetImplementedException();
+        return service.getBlogById(blogId);
     }
 
     @DeleteMapping(path = "{blogId}")
-    public void deleteAnimal(@PathVariable("blogId") int blogId) {
+    public void deleteBlog(@PathVariable("blogId") int blogId) {
         throw new NotYetImplementedException();
     }
 

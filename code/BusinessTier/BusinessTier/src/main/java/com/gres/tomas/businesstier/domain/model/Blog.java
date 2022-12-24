@@ -54,6 +54,7 @@ public class Blog {
         this.posts = 0;
         this.likes = 0;
         this.dislikes = 0;
+        this.comments = 0;
         this.access = access;
     }
 

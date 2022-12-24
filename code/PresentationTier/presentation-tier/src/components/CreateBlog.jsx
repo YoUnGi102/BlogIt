@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Button, TextField, FormControl, FormGroup, MenuItem} from '@mui/material';
-import {EMPTY_BLOG_ERROR} from "../domain/other/constants";
 import "./CreateBlog.css"
+import {serverPath} from "../config"
 import CreateBlogDto from "../domain/dto/CreateBlogDto"
 
 function CreateBlog(){
@@ -38,7 +38,7 @@ function CreateBlog(){
 
     async function handleSubmit(event) {
         event.preventDefault();
-        const url = 'http://localhost:8080/api/v1/blogs';
+        const url = serverPath + 'blogs';
 
         fetch(url, {
             method: 'post',
@@ -50,8 +50,6 @@ function CreateBlog(){
                 if(response.ok){
                     response.json()
                         .then(data => {
-                            // TODO Is necessary?
-                            //validateFields(EMPTY_BLOG_ERROR);
                             navigate("/blogs/"+data.id)
                         })
                 }else{
