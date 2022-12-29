@@ -7,6 +7,6 @@ import com.gres.tomas.businesstier.domain.model.User;
 
 public interface IUserService {
 
-    User postUser(CreateUserDto dto) throws InvalidAttributeException, EntityAlreadyExistsException;
+    User postUser(CreateUserDto dto) throws Throwable;
 
 }

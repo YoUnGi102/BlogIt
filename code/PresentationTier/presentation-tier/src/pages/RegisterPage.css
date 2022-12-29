@@ -4,9 +4,10 @@
     box-sizing: border-box;
 }
 
-.RegisterPage .TextField, .RegisterPage .Button {
+.RegisterPage .FormComponent {
     margin: 10px;
 }
+
 
 .RegisterPage .Button {
     height: 56px;

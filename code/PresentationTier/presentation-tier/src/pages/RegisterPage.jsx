@@ -1,9 +1,13 @@
 import "./RegisterPage.css";
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {Button, FormControl, FormGroup, MenuItem, TextField} from "@mui/material";
+import {
+    Button, FormControl, FormGroup, TextField,
+    OutlinedInput, IconButton, InputAdornment, InputLabel, FormHelperText
+} from "@mui/material";
 import {serverPath} from "../config";
 import {EMPTY_CREATE_USER_DTO} from "../domain/dto/CreateUserDto"
+import {Visibility, VisibilityOff} from '@mui/icons-material';
 
 export default function RegisterPage(){
 
@@ -11,6 +15,7 @@ export default function RegisterPage(){
 
     const [dto, setDto] = useState(EMPTY_CREATE_USER_DTO)
     const [error, setError] = useState(EMPTY_CREATE_USER_DTO);
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleTextFieldChange = (
         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -52,8 +57,7 @@ export default function RegisterPage(){
         setError({
             username: (errorMessages.username == null) ? "" : errorMessages.username,
             email: (errorMessages.email == null) ? "" : errorMessages.email,
-            password: (errorMessages.password == null) ? "" : errorMessages.password,
-            repeatPassword: (errorMessages.repeatPassword == null) ? "" : errorMessages.repeatPassword
+            password: (errorMessages.password == null) ? "" : errorMessages.password
         });
         console.log(error);
     }
@@ -70,7 +74,7 @@ export default function RegisterPage(){
                         <TextField
                             error={error.username.length > 0}
                             helperText={error.username}
-                            className="TextField"
+                            className="FormComponent"
                             id="username"
                             name="username"
                             label=" Username"
@@ -82,7 +86,7 @@ export default function RegisterPage(){
                         <TextField
                             error={error.email.length > 0}
                             helperText={error.email}
-                            className="TextField"
+                            className="FormComponent"
                             id="email"
                             name="email"
                             label=" E-mail"
@@ -92,34 +96,37 @@ export default function RegisterPage(){
                             required
                             maxRows={4}
                         />
-                        <TextField
-                            error={error.password.length > 0}
-                            helperText={error.password}
-                            className="TextField"
-                            id="password"
-                            name="password"
-                            label=" Password"
-                            variant="outlined"
-                            onChange={handleTextFieldChange}
-                            multiline
-                            required
-                            maxRows={4}
-                        />
-                        <TextField
-                            error={error.repeatPassword.length > 0}
-                            helperText={error.repeatPassword}
-                            className="TextField"
-                            id="repeatPassword"
-                            name="repeatPassword"
-                            label=" Repeat Password"
-                            variant="outlined"
-                            onChange={handleTextFieldChange}
-                            multiline
-                            required
-                            maxRows={4}
-                        />
+                        <FormControl
+                            className={"FormComponent"}
+                        >
+                            <InputLabel htmlFor='outlined-adornment-password'>Password</InputLabel>
+                            <OutlinedInput
+                                helperText={error.password}
+                                type={showPassword ? 'text' : 'password'}
+                                label={" Password"}
+                                name={"password"}
+                                onChange={handleTextFieldChange}
+                                required
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            edge="end"
+                                        >
+                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                            />
+                            {!!error.password.length > 0 && (
+                                <FormHelperText error id="password-error">
+                                    {error.password}
+                                </FormHelperText>
+                            )}
+                        </FormControl>
                         <Button
-                            className="Button"
+                            className="Button FormComponent"
                             type="submit"
                             variant="outlined"
                             color="success"

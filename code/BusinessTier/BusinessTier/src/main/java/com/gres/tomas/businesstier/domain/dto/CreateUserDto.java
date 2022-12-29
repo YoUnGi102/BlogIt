@@ -4,13 +4,11 @@ public class CreateUserDto {
 
     private final String username;
     private final String password;
-    private final String repeatPassword;
     private final String email;
 
-    public CreateUserDto(String username, String password, String repeatPassword, String email) {
+    public CreateUserDto(String username, String password, String email) {
         this.username = username;
         this.password = password;
-        this.repeatPassword = repeatPassword;
         this.email = email;
     }
 
@@ -19,9 +17,6 @@ public class CreateUserDto {
     }
     public String getPassword() {
         return password;
-    }
-    public String getRepeatPassword() {
-        return repeatPassword;
     }
     public String getEmail() {
         return email;
